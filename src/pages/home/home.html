@@ -1,18 +1,32 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>APP NAME</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goSearch()">
+        <ion-icon name="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content>
+    <ion-fab right bottom>
+        <button ion-fab big color="primary" (click)="goMyLocation()">
+          <ion-icon name="md-locate"></ion-icon>
+        </button>
+      </ion-fab>
+      <div id="map_canvas"></div>
+  <ion-item no-lines id="locationRow" *ngIf="pickedLocation != null" color="primary">
+    <ion-label class="multiline" item-content color="light">Població triada: </ion-label>
+    <ion-label item-end color="light" id="end" *ngIf="pickedLocation == null">Cap</ion-label>
+    <ion-chip item-end color="primaryLight" *ngIf="pickedLocation != null">
+      <ion-label>{{pickedLocation.Nom}}</ion-label>
+      <button ion-button color="primaryDark" (click)="delete(pickedLocation)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-chip>
+  </ion-item>
 </ion-content>
